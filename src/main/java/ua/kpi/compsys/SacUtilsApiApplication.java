@@ -20,12 +20,11 @@ public class SacUtilsApiApplication extends Application<SacUtilApiConfiguration>
 
     @Override
     public String getName() {
-        return "hello-world";
+        return "sac-utils-api";
     }
 
     @Override
     public void initialize(Bootstrap<SacUtilApiConfiguration> bootstrap) {
-        bootstrap.addBundle(new AssetsBundle());
         bootstrap.addBundle(new SwaggerBundle<SacUtilApiConfiguration>() {
             @Override
             protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(SacUtilApiConfiguration configuration) {
@@ -38,13 +37,17 @@ public class SacUtilsApiApplication extends Application<SacUtilApiConfiguration>
     public void run(SacUtilApiConfiguration configuration,
                     Environment environment) throws ClassNotFoundException {
         ApplicationContext context = getSpringApplicationContext();
-        for (Object resource : context.getBeansWithAnnotation(Path.class).values()) {
-            environment.jersey().register(resource);
-        }
+        registerResources(environment, context);
 
     }
 
-    public ApplicationContext getSpringApplicationContext() {
+    private void registerResources(Environment environment, ApplicationContext context) {
+        for (Object resource : context.getBeansWithAnnotation(Path.class).values()) {
+            environment.jersey().register(resource);
+        }
+    }
+
+    private ApplicationContext getSpringApplicationContext() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SacUtilsApiSpringConfiguration.class);
         context.start();
         return context;

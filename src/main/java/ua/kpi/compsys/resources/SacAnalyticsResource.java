@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 public class SacAnalyticsResource {
 
     @GET
-    
+
     public Response testFunction(int [] fucntion){
         return Response.ok().build();
     }

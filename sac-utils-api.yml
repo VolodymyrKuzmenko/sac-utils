@@ -7,7 +7,7 @@ server:
       port: 8082
     - type: https
       port: 8443
-      keyStorePath: example.keystore
+      keyStorePath: sac-utils-api.keystore
       keyStorePassword: example
       validateCerts: false
   adminConnectors:
@@ -15,7 +15,7 @@ server:
       port: 8083
     - type: https
       port: 8444
-      keyStorePath: example.keystore
+      keyStorePath: sac-utils-api.keystore
       keyStorePassword: example
       validateCerts: false
 
@@ -28,10 +28,8 @@ logging:
   # Logger-specific levels.
   loggers:
 
-    # Sets the level for 'com.example.app' to DEBUG.
-    com.example.app: DEBUG
-
-    org.hibernate.SQL: ALL
+    # Sets the level for 'ua.kpi.compsys' to DEBUG.
+    ua.kpi.compsys: DEBUG
 
   appenders:
     - type: console
